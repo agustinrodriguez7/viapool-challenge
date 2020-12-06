@@ -17,10 +17,7 @@ const requestMiddleware = store => next => action => {
 
     requestMethod(params)
         .then(response => dispatch(successAction(response)))
-        .catch(err => {
-            console.log(err)
-            dispatch(errorAction(err))
-        })
+        .catch(err => dispatch(errorAction(err)))
 
 }
 

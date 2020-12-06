@@ -1,9 +1,9 @@
-import { Navbar as BootstrapNavbar } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 
-const Header = ({ text, logo, width, height, href, children }) =>
+const Header = ({ logo, width, height, href, children }) =>
     <>
-        <BootstrapNavbar bg="light" variant="dark">
-            <BootstrapNavbar.Brand href={href}>
+        <Navbar bg="light" variant="dark">
+            <Navbar.Brand href={href}>
                 <img
                     alt=""
                     src={logo}
@@ -11,9 +11,8 @@ const Header = ({ text, logo, width, height, href, children }) =>
                     height={height || 30}
                     className="d-inline-block align-top"
                 />
-                {text}
-            </BootstrapNavbar.Brand>
-        </BootstrapNavbar>
+            </Navbar.Brand>
+        </Navbar>
         {children}
     </>
 
