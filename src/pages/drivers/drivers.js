@@ -11,16 +11,6 @@ import { getDriver, getError, getLoading } from '../../redux/drivers/selectors'
 import { AlertCircle } from 'react-feather'
 import LoadWithoutError from '../../components/loadWithoutError'
 
-const AlertErrorMessage = () =>
-    <Row>
-        <Col xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }}>
-            <AlertMessage style={{ marginTop: 25 }}
-                icon={AlertCircle}
-                headingText={driversStrings.errorMsgHeading}
-                variant={bootstrapVariants.danger}
-                text={driversStrings.errorMsg} />
-        </Col>
-    </Row>
 
 const Drivers = () => {
     const dispatch = useDispatch()
@@ -41,12 +31,22 @@ const Drivers = () => {
                             <div>{`Hola ${driver.name} ${driver.lastName}`}</div>
                             :
                             <button onClick={() => addNewDriver({})}> addDriver</button>
-
                     }
                 </LoadWithoutError>
             </Col>
         </Row>
     </LoadingWithCondition>
 }
+
+const AlertErrorMessage = () =>
+    <Row>
+        <Col xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }}>
+            <AlertMessage style={{ marginTop: 25 }}
+                icon={AlertCircle}
+                headingText={driversStrings.errorMsgHeading}
+                variant={bootstrapVariants.danger}
+                text={driversStrings.errorMsg} />
+        </Col>
+    </Row>
 
 export default Drivers
