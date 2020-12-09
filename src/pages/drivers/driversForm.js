@@ -164,7 +164,6 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState, is
             <Form>
                 <h1 style={{ marginTop: 15, marginBottom: 15 }}>{driversStrings.registrate}</h1>
                 <Input
-                    data-target='input-name-driver'
                     disabled={isLoading}
                     textLabel={driversStrings.name}
                     onBlur={handleOnBlur}
