@@ -14,6 +14,9 @@ jest.mock('react-redux', () => ({
 }))
 
 describe('Drivers', () => {
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
 
     it('should see error message when error is truthy', () => {
         jest.mock('../../redux/drivers/selectors', () => ({
