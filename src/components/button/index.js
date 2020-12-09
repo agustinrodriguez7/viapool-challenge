@@ -1,4 +1,4 @@
-import LoadingButton from './LoadingButton'
+import LoadingButton from './loadingButton'
 
 export {
     LoadingButton

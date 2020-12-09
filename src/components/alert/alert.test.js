@@ -1,11 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Alert from './'
-
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
+import '../../setupTests' //Agregado para poder obtener el reporte de jest
 
 describe('Alert', () => {
 

@@ -7,7 +7,7 @@ import { domainsAllowed } from '../../utils'
 import { LoadingButton } from '../../components/button'
 import { bootstrapVariants, bootstrapSizes, CenteredBox } from '../../components/utils'
 
-const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) => {
+const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState, isLoading }) => {
 
     const getdomain = email => email.split("@")[1].split('.')[0].toLowerCase()
 
@@ -164,6 +164,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
             <Form>
                 <h1 style={{ marginTop: 15, marginBottom: 15 }}>{driversStrings.registrate}</h1>
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.name}
                     onBlur={handleOnBlur}
                     isValid={formState?.nameInput}
@@ -172,6 +173,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     placeholder={driversStrings.name}
                 />
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.age}
                     onBlur={isValidAge}
                     isValid={formState?.ageInput}
@@ -180,6 +182,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     placeholder={driversStrings.age}
                 />
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.tel}
                     onBlur={isValidTel}
                     isValid={formState?.telInput}
@@ -188,6 +191,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     placeholder={driversStrings.telPlaceholder}
                 />
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.email}
                     onBlur={isAvailableDomain}
                     isValid={formState?.emailInput}
@@ -196,6 +200,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     placeholder={driversStrings.emailPlaceholder}
                 />
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.patent}
                     onBlur={isValidPatent}
                     isValid={formState?.patentInput}
@@ -204,6 +209,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     placeholder={driversStrings.patent}
                 />
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.year}
                     onBlur={isValidYear}
                     isValid={formState?.yearInput}
@@ -212,6 +218,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     placeholder={driversStrings.year}
                 />
                 <Input
+                    disabled={isLoading}
                     textLabel={driversStrings.model}
                     onBlur={isValidModel}
                     isValid={formState?.modelInput}
@@ -219,9 +226,12 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     errorMessage={driversStrings.modelError}
                     placeholder={driversStrings.model}
                 />
+                <Input isValid={true} isInvalid={false} errorMessage={'jkahsdjkahsjkd'} />
             </Form>
             <CenteredBox flexDirection='column'>
-                <LoadingButton text={driversStrings.buttonText}
+                <LoadingButton
+                    isLoading={isLoading}
+                    text={driversStrings.buttonText}
                     variant={bootstrapVariants.info}
                     size={bootstrapSizes.md}
                     onClick={handleOnSubmit} />

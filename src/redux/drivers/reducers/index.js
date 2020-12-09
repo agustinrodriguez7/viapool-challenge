@@ -1,7 +1,8 @@
 import {
     ADD_LOADING,
     ADD_ERROR,
-    ADD_SUCCESS
+    ADD_SUCCESS,
+    ADD_CLEAN
 } from '../actions'
 
 
@@ -20,6 +21,8 @@ const reducer = (state = initState, action) => {
             return { ...state, loading: false, error: action.error }
         case ADD_SUCCESS:
             return { ...state, loading: false, data: action.data }
+        case ADD_CLEAN:
+            return { ...state, data: null, error: null }
         default:
             return { ...state }
     }

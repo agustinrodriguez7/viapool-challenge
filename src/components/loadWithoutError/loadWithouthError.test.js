@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import LoadWithoutError from './loadWithoutError'
-
+import '../../setupTests' //Agregado para poder obtener el reporte de jest
 
 describe('LoadWithoutError', () => {
     it('should see orElseRender when error is truthy ', () => {

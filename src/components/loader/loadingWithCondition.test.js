@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import LoadingWithCondition from './loadingWithCondition'
 import Spinner from 'react-bootstrap/Spinner'
+import '../../setupTests' //Agregado para poder obtener el reporte de jest
 
 describe('LoadingWithCondition', () => {
     it('should see loader when condition is true ', () => {

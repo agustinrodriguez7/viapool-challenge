@@ -1,7 +1,7 @@
 const driversStrings = {
     registrate: 'Registrate!',
     errorMsgHeading: '¡Ups, algo salió mal!',
-    errorMsg: 'Ocurrió un problema y no pudimos procesar tu solicitud. Reintentá nuevamente en unos minutos.',
+    errorMsg: 'Ocurrió un problema y no pudimos procesar tu solicitud.',
     email: 'Dirección de correo electrónico',
     emailError: 'La dirección de correo no es correcta.',
     emailPlaceholder: 'Ej: miemail@viapool.com',
@@ -20,6 +20,7 @@ const driversStrings = {
     modelError: 'El modelo no debe contener numeros, caracteres especiales ni estar vacío.',
     patent: 'Patente',
     patentError: 'La patente ingresada es inválida.',
+    buttonRetry: 'Reintentá!'
 }
 
 export default driversStrings
