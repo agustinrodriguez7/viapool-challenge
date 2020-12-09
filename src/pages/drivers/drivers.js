@@ -61,8 +61,8 @@ export const AlertErrorMessage = ({ onClick }) =>
                 text={driversStrings.errorMsg} />
             <CenteredBox flexDirection='column'>
                 <Button variant={bootstrapVariants.info}
-                    onClick={onClick}
-                    {driversStrings.buttonRetry}>
+                    onClick={onClick}>
+                    {driversStrings.buttonRetry}
                 </Button>
             </CenteredBox>
         </Col>
