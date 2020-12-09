@@ -1,3 +1,4 @@
+import React from 'react'
 const LoadWithoutError = ({ error, orElseRender, children }) =>
     error ?
         orElseRender

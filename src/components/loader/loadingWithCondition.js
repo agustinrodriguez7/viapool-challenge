@@ -1,8 +1,9 @@
 import React from 'react'
+import Spinner from 'react-bootstrap/Spinner'
 
 const LoadingWithCondition = ({ condition, children }) =>
     condition ?
-        <div data-target='loader-with-condition'>cargando...</div>
+        <Spinner animation="grow" variant="info" />
         :
         children
 

@@ -18,6 +18,8 @@ const driversStrings = {
     yearError: 'El año ingresado no es válido.',
     model: 'Modelo',
     modelError: 'El modelo no debe contener numeros, caracteres especiales ni estar vacío.',
+    patent: 'Patente',
+    patentError: 'La patente ingresada es inválida.',
 }
 
 export default driversStrings

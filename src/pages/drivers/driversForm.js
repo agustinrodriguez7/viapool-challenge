@@ -57,7 +57,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
 
     const isValidAge = (event) => {
         const number = event.target.value
-        number && isANumber(number) && number >= 18 ?
+        number && isANumber(number) && number >= 18 && number < 100 ?
             setFormState({
                 ...formState,
                 ageInput: true,
@@ -74,7 +74,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
 
     const isValidYear = (event) => {
         const number = event.target.value
-        number && isANumber(number) && number >= 1990 ?
+        number && isANumber(number) && number >= 1990 && number <= new Date().getFullYear() ?
             setFormState({
                 ...formState,
                 yearInput: true,
@@ -122,12 +122,30 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
             })
     }
 
+    const isValidPatent = event => {
+        const oldPatentRegExp = /^[a-zA-Z]{3}[0-9]{3}$/
+        const newPatentRegExpt = /^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}$/
+        const patent = event.target.value
+        patent && (oldPatentRegExp.test(patent) || newPatentRegExpt.test(patent)) ?
+            setFormState({
+                ...formState,
+                patentInput: true,
+                patent: patent
+            })
+            :
+            setFormState({
+                ...formState,
+                patentInput: false,
+                patent: undefined
+            })
+    }
+
     const handleOnSubmit = () => {
-        const { age, name, email, tel, year, model } = formState
-        if (age && name && email && tel && year && model) {
-            addNewDriver({ age, name, email })
+        const { age, name, email, tel, year, model, patent } = formState
+        if (age && name && email && tel && year && model && patent) {
+            addNewDriver({ age, name, email, tel, year, model, patent })
         } else {
-            const { nameInput, emailInput, ageInput, telInput, yearInput, modelInput } = formState
+            const { nameInput, emailInput, ageInput, telInput, yearInput, modelInput, patentInput } = formState
             setFormState({
                 ...formState,
                 nameInput: nameInput || false,
@@ -136,6 +154,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                 telInput: telInput || false,
                 yearInput: yearInput || false,
                 modelInput: modelInput || false,
+                patentInput: patentInput || false,
             })
         }
     }
@@ -175,6 +194,14 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     isInvalid={formState?.emailInput === false}
                     errorMessage={driversStrings.emailError}
                     placeholder={driversStrings.emailPlaceholder}
+                />
+                <Input
+                    textLabel={driversStrings.patent}
+                    onBlur={isValidPatent}
+                    isValid={formState?.patentInput}
+                    isInvalid={formState?.patentInput === false}
+                    errorMessage={driversStrings.patentError}
+                    placeholder={driversStrings.patent}
                 />
                 <Input
                     textLabel={driversStrings.year}
