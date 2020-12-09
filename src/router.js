@@ -7,7 +7,7 @@ import logo from './assets/logo.png'
 
 const Router = () =>
     <BrowserRouter>
-        <Header logo={logo} width={160} height={42}>
+        <Header logo={logo} width={160} height={42} href='https://viapool.com/'>
             <Switch>
                 <Route exact={true} path={routes.drivers} component={Drivers} />
                 <Route path={routes.notFound} component={NotFound} />

@@ -51,7 +51,6 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                 nameInput: false,
                 name: undefined
             })
-
     }
 
     const isANumber = (text) => /^[0-9]+$/.test(text)
@@ -73,6 +72,23 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
 
     }
 
+    const isValidYear = (event) => {
+        const number = event.target.value
+        number && isANumber(number) && number >= 1990 ?
+            setFormState({
+                ...formState,
+                yearInput: true,
+                year: number
+            })
+            :
+            setFormState({
+                ...formState,
+                yearInput: false,
+                year: undefined
+            })
+
+    }
+
     const isValidTel = (event) => {
         const tel = event.target.value
         tel && isANumber(tel) && tel.length === 10 ?
@@ -90,19 +106,36 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
 
     }
 
+    const isValidModel = (event) => {
+        const name = event.target.value
+        name && name.length > 2 && onlyContainsText(name) ?
+            setFormState({
+                ...formState,
+                modelInput: true,
+                model: name
+            })
+            :
+            setFormState({
+                ...formState,
+                modelInput: false,
+                model: undefined
+            })
+    }
 
     const handleOnSubmit = () => {
-        const { age, name, email, tel } = formState
-        if (age && name && email && tel) {
+        const { age, name, email, tel, year, model } = formState
+        if (age && name && email && tel && year && model) {
             addNewDriver({ age, name, email })
         } else {
-            const { nameInput, emailInput, ageInput, telInput } = formState
+            const { nameInput, emailInput, ageInput, telInput, yearInput, modelInput } = formState
             setFormState({
                 ...formState,
                 nameInput: nameInput || false,
                 emailInput: emailInput || false,
                 ageInput: ageInput || false,
                 telInput: telInput || false,
+                yearInput: yearInput || false,
+                modelInput: modelInput || false,
             })
         }
     }
@@ -110,6 +143,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
     return <Row>
         <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
             <Form>
+                <h1 style={{ marginTop: 15, marginBottom: 15 }}>{driversStrings.registrate}</h1>
                 <Input
                     textLabel={driversStrings.name}
                     onBlur={handleOnBlur}
@@ -132,7 +166,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     isValid={formState?.telInput}
                     isInvalid={formState?.telInput === false}
                     errorMessage={driversStrings.telError}
-                    placeholder={driversStrings.tel}
+                    placeholder={driversStrings.telPlaceholder}
                 />
                 <Input
                     textLabel={driversStrings.email}
@@ -141,6 +175,22 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState }) 
                     isInvalid={formState?.emailInput === false}
                     errorMessage={driversStrings.emailError}
                     placeholder={driversStrings.emailPlaceholder}
+                />
+                <Input
+                    textLabel={driversStrings.year}
+                    onBlur={isValidYear}
+                    isValid={formState?.yearInput}
+                    isInvalid={formState?.yearInput === false}
+                    errorMessage={driversStrings.yearError}
+                    placeholder={driversStrings.year}
+                />
+                <Input
+                    textLabel={driversStrings.model}
+                    onBlur={isValidModel}
+                    isValid={formState?.modelInput}
+                    isInvalid={formState?.modelInput === false}
+                    errorMessage={driversStrings.modelError}
+                    placeholder={driversStrings.model}
                 />
             </Form>
             <CenteredBox flexDirection='column'>
