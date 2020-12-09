@@ -17,6 +17,7 @@ const Header = ({ logo, width, height, href, children }) =>
                 </Navbar.Brand>
             </Navbar>
             {children}
+            <div style={{ marginBottom: 40 }}></div>
         </Col>
     </Row >
 

@@ -6,7 +6,8 @@ const bootstrapVariants = {
     warning: 'warning',
     info: 'info',
     light: 'light',
-    dark: 'dark'
+    dark: 'dark',
+    link: 'link'
 }
 
 export default bootstrapVariants

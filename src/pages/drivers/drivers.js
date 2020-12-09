@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useDispatch, useSelector } from 'react-redux'
 import AlertMessage from '../../components/alert'
-import { bootstrapVariants } from '../../components/utils'
+import { bootstrapVariants, CenteredBox } from '../../components/utils'
 import { driversStrings } from '../../languages'
 import { addDriver } from '../../redux/drivers'
 import { getDriver, getError, getLoading } from '../../redux/drivers/selectors'
@@ -36,7 +36,7 @@ const Drivers = () => {
             <LoadWithoutError error={error} orElseRender={<AlertErrorMessage onClick={cleanError} />}>
                 {
                     driver ?
-                        <div>{`Hola ${driver.name} ${driver.lastName}`}</div>
+                        <AlertSuccessMessage driver={driver} />
                         :
                         <>
                             <DriversForm driversStrings={driversStrings}
@@ -52,9 +52,7 @@ const Drivers = () => {
     </Row>
 }
 
-export default Drivers
-
-const AlertErrorMessage = ({ onClick }) =>
+export const AlertErrorMessage = ({ onClick }) =>
     <Row>
         <Col xs={{ span: 12 }} md={{ span: 6, offset: 3 }}>
             <AlertMessage style={{ marginTop: 25 }}
@@ -62,9 +60,31 @@ const AlertErrorMessage = ({ onClick }) =>
                 headingText={driversStrings.errorMsgHeading}
                 variant={bootstrapVariants.danger}
                 text={driversStrings.errorMsg} />
-            <Button variant={bootstrapVariants.info}
-                onClick={onClick}>
-                {driversStrings.buttonRetry}
-            </Button>
+            <CenteredBox flexDirection='column'>
+                <Button variant={bootstrapVariants.info}
+                    onClick={onClick}>
+                    {driversStrings.buttonRetry}
+                </Button>
+            </CenteredBox>
         </Col>
     </Row>
+
+export const AlertSuccessMessage = ({ driver }) => {
+    return <Row>
+        <Col xs={{ span: 12 }} md={{ span: 6, offset: 3 }}>
+            <AlertMessage style={{ marginTop: 25 }}
+                Icon={AlertCircle}
+                headingText={driversStrings.successMsgHeading}
+                variant={bootstrapVariants.success}
+                text={driversStrings.successMsg(driver)} />
+            <CenteredBox flexDirection='column'>
+                <Button variant={bootstrapVariants.link}
+                    onClick={() => alert('redirección a la home')}>
+                    {driversStrings.buttonSuccess}
+                </Button>
+            </CenteredBox>
+        </Col>
+    </Row>
+}
+
+export default Drivers

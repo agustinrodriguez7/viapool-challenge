@@ -164,6 +164,7 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState, is
             <Form>
                 <h1 style={{ marginTop: 15, marginBottom: 15 }}>{driversStrings.registrate}</h1>
                 <Input
+                    data-target='input-name-driver'
                     disabled={isLoading}
                     textLabel={driversStrings.name}
                     onBlur={handleOnBlur}
@@ -226,7 +227,6 @@ const DriversForm = ({ driversStrings, formState, addNewDriver, setFormState, is
                     errorMessage={driversStrings.modelError}
                     placeholder={driversStrings.model}
                 />
-                <Input isValid={true} isInvalid={false} errorMessage={'jkahsdjkahsjkd'} />
             </Form>
             <CenteredBox flexDirection='column'>
                 <LoadingButton
