@@ -3,8 +3,9 @@ import { mount, shallow } from 'enzyme'
 import Drivers from './'
 import { AlertErrorMessage, AlertSuccessMessage } from './drivers'
 import '../../setupTests' //Agregado para poder obtener el reporte de jest
-import { LoadingButton } from '../../components/button'
 import DriversForm from './driversForm'
+import Button from 'react-bootstrap/Button'
+import { useDispatch } from 'react-redux'
 
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn(),
@@ -33,6 +34,16 @@ describe('Drivers', () => {
         }));
         const wrapper = mount(<Drivers />)
         expect(wrapper.containsMatchingElement(AlertSuccessMessage)).toEqual(true)
+    })
+
+    it('should execute dispatch just one when has error', () => {
+        jest.mock('../../redux/drivers/selectors', () => ({
+            getError: jest.fn().mockReturnValue({ error: {} }),
+        }));
+        const wrapper = mount(<Drivers />)
+        wrapper.find(Button).simulate('click')
+        expect(useDispatch).toHaveBeenCalledTimes(2) //Se ejecuta la primera vez cuando se instancia
+
     })
 
 })

@@ -30,7 +30,6 @@ const Drivers = () => {
         setFormState({})
     }
 
-    //nombre, edad, telefono, email, patente, modelo y año
     return <Row>
         <Col xs={{ span: 10, offset: 1 }}>
             <LoadWithoutError error={error} orElseRender={<AlertErrorMessage onClick={cleanError} />}>
@@ -62,8 +61,8 @@ export const AlertErrorMessage = ({ onClick }) =>
                 text={driversStrings.errorMsg} />
             <CenteredBox flexDirection='column'>
                 <Button variant={bootstrapVariants.info}
-                    onClick={onClick}>
-                    {driversStrings.buttonRetry}
+                    onClick={onClick}
+                    {driversStrings.buttonRetry}>
                 </Button>
             </CenteredBox>
         </Col>
