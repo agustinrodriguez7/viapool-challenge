@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +10,7 @@ import { addDriver } from '../../redux/drivers'
 import { getDriver, getError, getLoading } from '../../redux/drivers/selectors'
 import { AlertCircle } from 'react-feather'
 import LoadWithoutError from '../../components/loadWithoutError'
+import DriversForm from './driversForm'
 
 
 const Drivers = () => {
@@ -17,20 +18,28 @@ const Drivers = () => {
     const driver = useSelector(state => getDriver(state))
     const error = useSelector(state => getError(state))
     const isLoading = useSelector(state => getLoading(state))
+    const [formState, setFormState] = useState({})
 
     const addNewDriver = (driver) => {
         dispatch(addDriver(driver))
     }
 
+    //nombre, edad, telefono, email, patente, modelo y año
     return <LoadingWithCondition condition={isLoading}>
         <Row>
-            <Col>
+            <Col xs={{ span: 10, offset: 1 }}>
                 <LoadWithoutError error={error} orElseRender={<AlertErrorMessage />}>
                     {
                         driver ?
                             <div>{`Hola ${driver.name} ${driver.lastName}`}</div>
                             :
-                            <button onClick={() => addNewDriver({})}> addDriver</button>
+                            <>
+                                <DriversForm driversStrings={driversStrings}
+                                    formState={formState}
+                                    addNewDriver={addNewDriver}
+                                    setFormState={setFormState} />
+                            </>
+
                     }
                 </LoadWithoutError>
             </Col>
@@ -38,15 +47,15 @@ const Drivers = () => {
     </LoadingWithCondition>
 }
 
+export default Drivers
+
 const AlertErrorMessage = () =>
     <Row>
-        <Col xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }}>
+        <Col xs={{ span: 12 }} md={{ span: 6, offset: 3 }}>
             <AlertMessage style={{ marginTop: 25 }}
-                icon={AlertCircle}
+                Icon={AlertCircle}
                 headingText={driversStrings.errorMsgHeading}
                 variant={bootstrapVariants.danger}
                 text={driversStrings.errorMsg} />
         </Col>
     </Row>
-
-export default Drivers

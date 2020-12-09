@@ -2,7 +2,7 @@ const LoadWithoutError = ({ error, orElseRender, children }) =>
     error ?
         orElseRender
         :
-        children
+        children || <></>
 
 
 export default LoadWithoutError
